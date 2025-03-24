@@ -14,6 +14,7 @@ class room {
         void setEvent(event* eve);
         void setLocationX(int num);
         void setLocationY(int num);
+        void resetEvent();
         ~room() {delete e;}
 };
 

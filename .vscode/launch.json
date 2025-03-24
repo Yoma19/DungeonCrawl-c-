@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Trey Trejo/Desktop/C++/Thwumpus",
-      "program": "c:/Users/Trey Trejo/Desktop/C++/Thwumpus/build/Debug/outDebug",
+      "cwd": "c:/Users/Trey Trejo/Documents/GitHub/DungeonCrawl-c-",
+      "program": "c:/Users/Trey Trejo/Documents/GitHub/DungeonCrawl-c-/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

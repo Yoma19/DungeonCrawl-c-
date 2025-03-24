@@ -15,20 +15,20 @@ int main() {
     int x;
     int y;
     
-        while (x != 0) {
-            system("cls || clear");
+    while (x != 0) {
+        system("cls || clear");
         /* system("cls || clear");
         cout<< "yoma was heir\n";
         cin >> x;  */
 
         //vector<char> vec(10, 'r');
 
-            zombie z;
-            int width;
-            int height = 10;
-            srand(time(nullptr));
+        zombie z;
+        int width;
+        int height = 10;
+        srand(time(nullptr));
 
-            vector<vector<room>> rooms(6, vector<room>(7));
+        vector<vector<room>> rooms(6, vector<room>(7));
         //rooms[3][3].setEvent(new zombie);
 
         player p;
@@ -37,9 +37,9 @@ int main() {
         p.setLocationX(pX);
         p.setLocationY(pY);
 
-        rooms[pX][pY].setEvent(&p);
+        //rooms[pX][pY].setEvent(&p);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             int x = rand() % 6;
             int y = rand() % 7;
 
@@ -53,9 +53,12 @@ int main() {
             rooms[x][y].setEvent(new zombie);
         } 
 
+        //cout<< "Welcome to gettin cooked";
+
         char q;
         while (q != 'l') {
             system("cls || clear");
+            rooms[pX][pY].setEvent(&p);
 
             cout<< "\n====================================\n";
             for (int i = 0; i < 6; i++){
@@ -65,14 +68,15 @@ int main() {
                 }
                 for (int j = 0; j < 7; j++) {
                     cout<< "| ";
+
+                    
+
                     if (rooms[i][j].getEvent() != nullptr) {
                         cout<< rooms[i][j].getEvent()->getId();
                     
                     } else {
                         cout<< " ";
                     }
-                
-                        //cout<< rand() % 2;
                     cout<< " |";
                 
                 }
@@ -82,7 +86,38 @@ int main() {
             cout<< "\nControls:\n'l' Exit\n'w' move up\n's' move down\n'a' move left\n'd' move right\n\n";
 
             cin >> q;
+
+            rooms[pX][pY].resetEvent();
+
+            if (pX < 6 && pY < 7){
+                if (q == 's') {
+                    pX = pX + 1;
+                    if (pX > 5) {
+                        pX--;
+                    }
+                }
+                if (q == 'w') {
+                    pX--;
+                    if (pX < 0) {
+                        pX++;
+                    }
+                }
+                if (q == 'a') {
+                    pY--;
+                    if (pY < 0) {
+                        pY++;
+                    }
+                }
+                if (q == 'd') {
+                    pY++;
+                    if (pY > 6) {
+                        pY--;
+                    }
+                }
+            } 
         }
+
+
     
 
     }

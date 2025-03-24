@@ -20,6 +20,7 @@ class player : public event {
         void setDmg(int d);
         void setLocationX(int x);
         void setLocationY(int y);
+        
 
         char getId();
         int getHealth();

@@ -19,3 +19,7 @@ void room :: setLocationX(int num){
 void room :: setLocationY(int num){
     this->location.y = num;
 }
+
+void room :: resetEvent() {
+    this->e = nullptr;
+}
