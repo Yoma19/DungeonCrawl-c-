@@ -1,0 +1,1 @@
+g++ -o Thwumpus.exe Thwumpus.cpp Event.cpp Monster.cpp Room.cpp Zombie.cpp Player.cpp 
