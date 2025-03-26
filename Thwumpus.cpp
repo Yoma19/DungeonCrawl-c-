@@ -77,6 +77,8 @@ int main() {
 
             cout << "\nHealth: ";
             cout << p.getHealth();
+            cout << "\nCurrent Dmg: ";
+            cout << p.getDmg();
             cout<< "\n\nControls:\n'l' Reset\n'w' move up\n's' move down\n'a' move left\n'd' move right\n\n";
 
             cin >> q;
@@ -88,49 +90,89 @@ int main() {
                     if(pX < 5) {
                         if (rooms[pX+1][pY].getEvent() != nullptr) {
                             p.decHealth(rooms[pX+1][pY].getEvent()->getDmg());
+                            rooms[pX+1][pY].getEvent()->decHealth(p.getDmg());
+                            if (rooms[pX+1][pY].getEvent()->getHealth() > 0) {
+                                // don't move
+                            } else if (rooms[pX+1][pY].getEvent()->getHealth() <= 0) {
+                                pX = pX + 1;
+                                if (pX > 5) {
+                                    pX--;
+                                }
+                            }
+                        } else if (rooms[pX+1][pY].getEvent() == nullptr) {
+                            pX = pX + 1;
+                            if (pX > 5) {
+                                pX--;
+                            }
                         }
                     }
 
-                    pX = pX + 1;
+                    /* pX = pX + 1;
                     if (pX > 5) {
                         pX--;
-                    }
+                    } */
                 }
                 if (q == "w") {
                     if(pX > 0) {
                         if (rooms[pX-1][pY].getEvent() != nullptr) {
                             p.decHealth(rooms[pX-1][pY].getEvent()->getDmg());
+                            rooms[pX-1][pY].getEvent()->decHealth(p.getDmg());
+                            if (rooms[pX-1][pY].getEvent()->getHealth() > 0) {
+                                // don't move
+                            } else if (rooms[pX-1][pY].getEvent()->getHealth() <= 0) {
+                                pX--;
+                                if (pX < 0) {
+                                    pX++;
+                                }
+                            }
+                        } else if (rooms[pX-1][pY].getEvent() == nullptr) {
+                            pX--;
+                            if (pX < 0) {
+                                pX++;
+                            }
                         }
-                    }
-
-
-                    pX--;
-                    if (pX < 0) {
-                        pX++;
                     }
                 }
                 if (q == "a") {
                     if(pY > 0) {
                         if (rooms[pX][pY-1].getEvent() != nullptr) {
                             p.decHealth(rooms[pX][pY-1].getEvent()->getDmg());
+                            rooms[pX][pY-1].getEvent()->decHealth(p.getDmg());
+                            if (rooms[pX][pY-1].getEvent()->getHealth() > 0) {
+                                // don't move
+                            } else if (rooms[pX][pY-1].getEvent()->getHealth() <= 0) {
+                                pY--;
+                                if (pY < 0) {
+                                    pY++;
+                                }
+                            }
+                        } else if (rooms[pX][pY-1].getEvent() == nullptr) {
+                            pY--;
+                            if (pY < 0) {
+                                pY++;
+                            }
                         }
-                    }
-
-                    pY--;
-                    if (pY < 0) {
-                        pY++;
                     }
                 }
                 if (q == "d") {
                     if(pY < 6) {
                         if (rooms[pX][pY+1].getEvent() != nullptr) {
                             p.decHealth(rooms[pX][pY+1].getEvent()->getDmg());
+                            rooms[pX][pY+1].getEvent()->decHealth(p.getDmg());
+                            if (rooms[pX][pY+1].getEvent()->getHealth() > 0) {
+                                // don't move
+                            } else if (rooms[pX][pY+1].getEvent()->getHealth() <= 0) {
+                                pY++;
+                                if (pY > 6) {
+                                    pY--;
+                                }
+                            }
+                        } else if (rooms[pX][pY+1].getEvent() == nullptr) {
+                            pY++;
+                            if (pY > 6) {
+                                pY--;
+                            }
                         }
-                    }
-
-                    pY++;
-                    if (pY > 6) {
-                        pY--;
                     }
                 }
             } 

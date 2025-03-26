@@ -7,3 +7,11 @@ char event :: getId(){
 int event :: getDmg() {
     return this->dmg;
 }
+
+void event :: decHealth(int h) {
+    this->health = health - h;
+}
+
+int event :: getHealth() {
+    return this->health;
+}

@@ -19,3 +19,7 @@ void zombie :: decHealth(int h) {
 int zombie :: getDmg() {
     return this->dmg;
 }
+
+int zombie :: getHealth() {
+    return this->health;
+}

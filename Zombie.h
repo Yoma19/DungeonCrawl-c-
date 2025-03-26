@@ -17,6 +17,7 @@ class zombie : public monster {
         char getId();
         void decHealth(int h);
         int getDmg();
+        int getHealth();
 };
 
 #endif

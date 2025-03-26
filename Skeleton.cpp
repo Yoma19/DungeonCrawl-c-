@@ -11,3 +11,7 @@ void skeleton :: decHealth(int h) {
 int skeleton :: getDmg() {
     return this->dmg;
 }
+
+int skeleton :: getHealth() {
+    return this->health;
+}
