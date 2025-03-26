@@ -8,8 +8,8 @@
 class player : public event {
 
     private:
-        int health;
-        int dmg;
+        int health = 100;
+        int dmg = 7;
         char id = '*';
         position location;
 

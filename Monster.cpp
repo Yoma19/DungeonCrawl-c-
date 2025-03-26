@@ -16,7 +16,7 @@ int monster :: getHidden() {
     return this->hidden;
 }
 
-void monster :: setHealth(int h) {
+void monster :: decHealth(int h) {
     this->health = health - h;
 }
 

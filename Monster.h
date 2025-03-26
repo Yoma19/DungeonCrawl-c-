@@ -20,7 +20,7 @@ class monster : public event {
 
         void setLocationX(int num);
         void setLocationY(int num);
-        void setHealth(int h);
+        void decHealth(int h);
         void setDmg(int d);
         void setHidden();
 };

@@ -5,10 +5,7 @@ event* room :: getEvent() {
 }
 
 void room :: setEvent(event* eve){
-    /* if (e != nullptr){
-        delete e;
-    } */
-   delete e;
+    delete e;
     this->e = eve;
 }
 

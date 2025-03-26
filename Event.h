@@ -7,11 +7,13 @@
 class event {
     private:
         char id;
+        int dmg;
         position location;
 
     public:
         virtual char getId() = 0;
         virtual ~event() = default;
+        virtual int getDmg() = 0;
 
 };
 

@@ -11,3 +11,11 @@ void zombie :: setLocationX(int num){
 void zombie :: setLocationY(int num){
     this->location.y = num;
 }
+
+void zombie :: decHealth(int h) {
+    this->health = health - h;
+}
+
+int zombie :: getDmg() {
+    return this->dmg;
+}
