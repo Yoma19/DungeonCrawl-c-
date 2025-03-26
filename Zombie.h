@@ -10,6 +10,7 @@ class zombie : public monster {
         int dmg = 2;
         char id = 'z';
         position location;
+        int hidden = 0;
     public:
         void setLocationX(int num);
         void setLocationY(int num);

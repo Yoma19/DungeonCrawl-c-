@@ -11,6 +11,21 @@
 
 using namespace std;
 
+template<typename eventType>
+void spawnEvent(int num, vector<vector<room>> &rooms) {
+    for (int i = 0; i < num; i++) {
+        int x = rand() % 6;
+        int y = rand() % 7;
+
+        while (rooms[x][y].getEvent() != nullptr) {
+            x = rand() % 6;
+            y = rand() % 7;
+        }
+
+        rooms[x][y].setEvent(new eventType);
+    } 
+}
+
 int main() {
     int x;
     int y;
@@ -39,7 +54,7 @@ int main() {
 
         //rooms[pX][pY].setEvent(&p);
 
-        for (int i = 0; i < 2; i++) {
+        /* for (int i = 0; i < 2; i++) {
             int x = rand() % 6;
             int y = rand() % 7;
 
@@ -51,12 +66,14 @@ int main() {
             //rooms[x][y].setLocationX(x);
             //rooms[x][y].setLocationX(y);
             rooms[x][y].setEvent(new zombie);
-        } 
+        }  */
+
+        spawnEvent<zombie>(3, rooms);
 
         //cout<< "Welcome to gettin cooked";
 
-        char q;
-        while (q != 'l') {
+        string q;
+        while (q != "l") {
             system("cls || clear");
             rooms[pX][pY].setEvent(&p);
 
@@ -90,25 +107,25 @@ int main() {
             rooms[pX][pY].resetEvent();
 
             if (pX < 6 && pY < 7){
-                if (q == 's') {
+                if (q == "s") {
                     pX = pX + 1;
                     if (pX > 5) {
                         pX--;
                     }
                 }
-                if (q == 'w') {
+                if (q == "w") {
                     pX--;
                     if (pX < 0) {
                         pX++;
                     }
                 }
-                if (q == 'a') {
+                if (q == "a") {
                     pY--;
                     if (pY < 0) {
                         pY++;
                     }
                 }
-                if (q == 'd') {
+                if (q == "d") {
                     pY++;
                     if (pY > 6) {
                         pY--;

@@ -12,6 +12,10 @@ char monster :: getId(){
     return this->id;
 }
 
+int monster :: getHidden() { 
+    return this->hidden;
+}
+
 void monster :: setHealth(int h) {
     this->health = health - h;
 }
@@ -26,4 +30,8 @@ void monster :: setLocationX(int num){
 
 void monster :: setLocationY(int num){
     this->location.y = num;
+}
+
+void monster :: setHidden() {
+    this->hidden = 1;
 }

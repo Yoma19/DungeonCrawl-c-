@@ -11,8 +11,6 @@ class event {
 
     public:
         virtual char getId() = 0;
-/*         virtual int setLocationX() = 0;
-        virtual int setLocationY() = 0; */
         virtual ~event() = default;
 
 };
