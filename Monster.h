@@ -11,18 +11,21 @@ class monster : public event {
         char id;
         position location;
         int hidden;
+        int type = 1;
 
     public:
-        int getHealth();
-        int getDmg();
-        char getId();
-        int getHidden();
+        virtual ~monster() = default;
+        virtual int getHealth();
+        virtual int getDmg();
+        virtual char getId();
+        virtual int getHidden();
 
         void setLocationX(int num);
         void setLocationY(int num);
-        void decHealth(int h);
-        void setDmg(int d);
-        void setHidden();
+        virtual void decHealth(int h);
+        virtual void setDmg(int d);
+        virtual void setHidden();
+        //int getType();
 };
 
 #endif

@@ -35,3 +35,7 @@ void monster :: setLocationY(int num){
 void monster :: setHidden() {
     this->hidden = 1;
 }
+
+/* int monster :: getType() {
+    return this->type;
+} */

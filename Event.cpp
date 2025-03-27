@@ -4,7 +4,7 @@ char event :: getId(){
     return this->id;
 }
 
-int event :: getDmg() {
+/* int event :: getDmg() {
     return this->dmg;
 }
 
@@ -15,3 +15,7 @@ void event :: decHealth(int h) {
 int event :: getHealth() {
     return this->health;
 }
+
+int event :: getType() {
+    return this->type;
+} */

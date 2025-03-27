@@ -10,11 +10,14 @@ class skeleton : public monster {
         char id = 's';
         position location;
         int hidden = 0;
+        int type = 1;
+
     public:
         char getId();
         void decHealth(int h);
         int getDmg();
         int getHealth();
+        int getType();
 };
 
 #endif

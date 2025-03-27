@@ -15,3 +15,7 @@ int skeleton :: getDmg() {
 int skeleton :: getHealth() {
     return this->health;
 }
+
+int skeleton :: getType() {
+    return this->type;
+}

@@ -11,6 +11,8 @@ class zombie : public monster {
         char id = 'z';
         position location;
         int hidden = 0;
+        int type = 1;
+
     public:
         void setLocationX(int num);
         void setLocationY(int num);
@@ -18,6 +20,7 @@ class zombie : public monster {
         void decHealth(int h);
         int getDmg();
         int getHealth();
+        int getType();
 };
 
 #endif

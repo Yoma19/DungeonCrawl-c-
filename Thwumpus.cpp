@@ -6,6 +6,7 @@
 #include "Room.h"
 #include "Player.h"
 #include "Skeleton.h"
+#include "Shortsword.h"
 
 #include <ctime>
 #include <cstdlib>
@@ -44,6 +45,7 @@ int main() {
 
         spawnEvent<zombie>((rand() % 4) + 1, rooms);
         spawnEvent<skeleton>((rand() % 4) + 1, rooms);
+        spawnEvent<shortsword>(1, rooms);
 
         //cout<< "Welcome to gettin cooked";
 
@@ -88,44 +90,45 @@ int main() {
             if (pX < 6 && pY < 7){
                 if (q == "s") {
                     if(pX < 5) {
-                        if (rooms[pX+1][pY].getEvent() != nullptr) {
-                            p.decHealth(rooms[pX+1][pY].getEvent()->getDmg());
-                            rooms[pX+1][pY].getEvent()->decHealth(p.getDmg());
-                            if (rooms[pX+1][pY].getEvent()->getHealth() > 0) {
-                                // don't move
-                            } else if (rooms[pX+1][pY].getEvent()->getHealth() <= 0) {
-                                pX = pX + 1;
-                                if (pX > 5) {
-                                    pX--;
+                        event* nextEvent = rooms[pX+1][pY].getEvent();
+                        if (nextEvent != nullptr) {
+                            if (monster* m = dynamic_cast<monster*>(nextEvent)) {
+                                p.decHealth(m->getDmg());
+                                m->decHealth(p.getDmg());
+                                if (m->getHealth() > 0) {
+                                    // don't move
+                                } else if (m->getHealth() <= 0) {
+                                    pX = pX + 1;
+                                    if (pX > 5) {
+                                        pX--;
+                                    }
                                 }
                             }
-                        } else if (rooms[pX+1][pY].getEvent() == nullptr) {
+                        } else if (nextEvent == nullptr) {
                             pX = pX + 1;
                             if (pX > 5) {
                                 pX--;
                             }
                         }
                     }
-
-                    /* pX = pX + 1;
-                    if (pX > 5) {
-                        pX--;
-                    } */
                 }
                 if (q == "w") {
                     if(pX > 0) {
-                        if (rooms[pX-1][pY].getEvent() != nullptr) {
-                            p.decHealth(rooms[pX-1][pY].getEvent()->getDmg());
-                            rooms[pX-1][pY].getEvent()->decHealth(p.getDmg());
-                            if (rooms[pX-1][pY].getEvent()->getHealth() > 0) {
-                                // don't move
-                            } else if (rooms[pX-1][pY].getEvent()->getHealth() <= 0) {
-                                pX--;
-                                if (pX < 0) {
-                                    pX++;
+                        event* nextEvent = rooms[pX-1][pY].getEvent();
+                        if (nextEvent != nullptr) {
+                            if (monster* m = dynamic_cast<monster*>(nextEvent)) {
+                                p.decHealth(m->getDmg());
+                                m->decHealth(p.getDmg());
+                                if (m->getHealth() > 0) {
+                                    // don't move
+                                } else if (m->getHealth() <= 0) {
+                                    pX--;
+                                    if (pX < 0) {
+                                        pX++;
+                                    }
                                 }
                             }
-                        } else if (rooms[pX-1][pY].getEvent() == nullptr) {
+                        } else if (nextEvent == nullptr) {
                             pX--;
                             if (pX < 0) {
                                 pX++;
@@ -135,18 +138,21 @@ int main() {
                 }
                 if (q == "a") {
                     if(pY > 0) {
-                        if (rooms[pX][pY-1].getEvent() != nullptr) {
-                            p.decHealth(rooms[pX][pY-1].getEvent()->getDmg());
-                            rooms[pX][pY-1].getEvent()->decHealth(p.getDmg());
-                            if (rooms[pX][pY-1].getEvent()->getHealth() > 0) {
-                                // don't move
-                            } else if (rooms[pX][pY-1].getEvent()->getHealth() <= 0) {
-                                pY--;
-                                if (pY < 0) {
-                                    pY++;
+                        event* nextEvent = rooms[pX][pY-1].getEvent();
+                        if (nextEvent != nullptr) {
+                            if (monster* m = dynamic_cast<monster*>(nextEvent)) {
+                                p.decHealth(m->getDmg());
+                                m->decHealth(p.getDmg());
+                                if (m->getHealth() > 0) {
+                                    // don't move
+                                } else if (m->getHealth() <= 0) {
+                                    pY--;
+                                    if (pY < 0) {
+                                        pY++;
+                                    }
                                 }
                             }
-                        } else if (rooms[pX][pY-1].getEvent() == nullptr) {
+                        } else if (nextEvent == nullptr) {
                             pY--;
                             if (pY < 0) {
                                 pY++;
@@ -156,18 +162,21 @@ int main() {
                 }
                 if (q == "d") {
                     if(pY < 6) {
-                        if (rooms[pX][pY+1].getEvent() != nullptr) {
-                            p.decHealth(rooms[pX][pY+1].getEvent()->getDmg());
-                            rooms[pX][pY+1].getEvent()->decHealth(p.getDmg());
-                            if (rooms[pX][pY+1].getEvent()->getHealth() > 0) {
-                                // don't move
-                            } else if (rooms[pX][pY+1].getEvent()->getHealth() <= 0) {
-                                pY++;
-                                if (pY > 6) {
-                                    pY--;
+                        event* nextEvent = rooms[pX][pY+1].getEvent();
+                        if (nextEvent != nullptr) {
+                            if (monster* m = dynamic_cast<monster*>(nextEvent)) {
+                                p.decHealth(m->getDmg());
+                                m->decHealth(p.getDmg());
+                                if (m->getHealth() > 0) {
+                                    // don't move
+                                } else if (m->getHealth() <= 0) {
+                                    pY++;
+                                    if (pY > 6) {
+                                        pY--;
+                                    }
                                 }
                             }
-                        } else if (rooms[pX][pY+1].getEvent() == nullptr) {
+                        } else if (nextEvent == nullptr) {
                             pY++;
                             if (pY > 6) {
                                 pY--;

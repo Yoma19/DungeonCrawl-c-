@@ -35,3 +35,4 @@ int player :: getLocationX() {
 int player :: getLocationY() {
     return location.y;
 }
+

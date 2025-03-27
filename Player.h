@@ -11,6 +11,7 @@ class player : public event {
         int health = 100;
         int dmg = 7;
         char id = '*';
+        int type = 0;
         position location;
 
     public:
@@ -27,6 +28,7 @@ class player : public event {
         int getDmg();
         int getLocationX();
         int getLocationY();
+        //int getType();
 
 };
 

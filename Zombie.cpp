@@ -23,3 +23,7 @@ int zombie :: getDmg() {
 int zombie :: getHealth() {
     return this->health;
 }
+
+int zombie :: getType() {
+    return this->type;
+}
