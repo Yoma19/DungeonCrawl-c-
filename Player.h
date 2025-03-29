@@ -9,7 +9,7 @@ class player : public event {
 
     private:
         int health = 100;
-        int dmg = 7;
+        int dmg = 1;
         char id = '*';
         int type = 0;
         position location;

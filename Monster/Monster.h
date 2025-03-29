@@ -1,7 +1,7 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 
-#include "Event.h"
+#include "../Event.h"
 #include <iostream>
 
 class monster : public event {

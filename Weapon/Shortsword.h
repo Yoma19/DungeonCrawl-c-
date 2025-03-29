@@ -6,8 +6,11 @@
 class shortsword : public weapon {
     private:
         char id = '^';
+        int dmg = 7;
     public:
         char getId();
+        int getDmg();
+        void setDmg(int d);
 };
 
 #endif

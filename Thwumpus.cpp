@@ -2,11 +2,11 @@
 #include <vector>
 
 #include "Event.h"
-#include "Zombie.h"
+#include "Monster/Zombie.h"
 #include "Room.h"
 #include "Player.h"
-#include "Skeleton.h"
-#include "Shortsword.h"
+#include "Monster/Skeleton.h"
+#include "Weapon/Shortsword.h"
 
 #include <ctime>
 #include <cstdlib>
@@ -103,6 +103,12 @@ int main() {
                                         pX--;
                                     }
                                 }
+                            } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
+                                p.setDmg(w->getDmg());
+                                pX = pX + 1;
+                                if (pX > 5) {
+                                    pX--;
+                                }
                             }
                         } else if (nextEvent == nullptr) {
                             pX = pX + 1;
@@ -126,6 +132,12 @@ int main() {
                                     if (pX < 0) {
                                         pX++;
                                     }
+                                }
+                            } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
+                                p.setDmg(w->getDmg());
+                                pX--;
+                                if (pX < 0) {
+                                    pX++;
                                 }
                             }
                         } else if (nextEvent == nullptr) {
@@ -151,6 +163,12 @@ int main() {
                                         pY++;
                                     }
                                 }
+                            } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
+                                p.setDmg(w->getDmg());
+                                pY--;
+                                if (pY < 0) {
+                                    pY++;
+                                }
                             }
                         } else if (nextEvent == nullptr) {
                             pY--;
@@ -174,6 +192,12 @@ int main() {
                                     if (pY > 6) {
                                         pY--;
                                     }
+                                }
+                            } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
+                                p.setDmg(w->getDmg());
+                                pY++;
+                                if (pY > 6) {
+                                    pY--;
                                 }
                             }
                         } else if (nextEvent == nullptr) {
