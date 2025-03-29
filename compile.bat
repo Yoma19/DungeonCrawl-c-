@@ -1,1 +1,1 @@
-g++ -o Thwumpus.exe Thwumpus.cpp Event.cpp Monster/Monster.cpp Room.cpp Monster/Zombie.cpp Player.cpp Monster/Skeleton.cpp Weapon/Weapon.cpp Weapon/Shortsword.cpp 
+g++ -o Thwumpus.exe Thwumpus.cpp Event.cpp Monster/Monster.cpp Room.cpp Monster/Zombie.cpp Player.cpp Monster/Skeleton.cpp Weapon/Weapon.cpp Weapon/Shortsword.cpp Stairs.cpp 

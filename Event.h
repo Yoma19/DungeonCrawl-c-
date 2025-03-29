@@ -10,7 +10,7 @@ class event {
 /*         int dmg;
         int health;
         int type; // 1 = monster, 2 = item, 3 = weapon, 4 = armor */
-        position location;
+        //position location;
 
     public:
         virtual char getId() = 0;

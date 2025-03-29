@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Monster/Skeleton.h"
 #include "Weapon/Shortsword.h"
+#include "Stairs.h"
 
 #include <ctime>
 #include <cstdlib>
@@ -30,10 +31,9 @@ void spawnEvent(int num, vector<vector<room>> &rooms) {
 }
 
 int main() {
-    int x;
-    int y;
+    char x;
     
-    while (x != 0) {
+    while (x != 'l') {
         system("cls || clear");
         srand(time(nullptr));
 
@@ -46,11 +46,43 @@ int main() {
         spawnEvent<zombie>((rand() % 4) + 1, rooms);
         spawnEvent<skeleton>((rand() % 4) + 1, rooms);
         spawnEvent<shortsword>(1, rooms);
+        spawnEvent<stairs>(1, rooms);
 
-        //cout<< "Welcome to gettin cooked";
+        cout<< "Welcome to gettin cooked";
+        cout << "\nWhat do you want to do?\n";
+        cout << "\n'p' Play\n'l' Leave\n\n";
+        cin >> x;
+        if (x == 'l') {
+            break;
+        }
+
+        int y = 0;
+        int floor = 1;
+        //rooms[pX][pY].setEvent(&p);
 
         string q;
-        while (q != "l") {
+        while (q != "r") {
+
+            if (y == 1) {
+
+                for (int i = 0; i < 6; i++) {
+                    for (int j = 0; j < 7; j++) {
+                        rooms[i][j].resetEvent();
+                    }
+                }
+
+                int pX = rand() % 6;
+                int pY = rand() % 7;
+
+                spawnEvent<zombie>((rand() % 4) + 1, rooms);
+                spawnEvent<skeleton>((rand() % 4) + 1, rooms);
+                spawnEvent<shortsword>(1, rooms);
+                spawnEvent<stairs>(1, rooms);
+
+                floor++;
+                y = 0;
+            }
+
             system("cls || clear");
             rooms[pX][pY].setEvent(&p);
 
@@ -81,7 +113,9 @@ int main() {
             cout << p.getHealth();
             cout << "\nCurrent Dmg: ";
             cout << p.getDmg();
-            cout<< "\n\nControls:\n'l' Reset\n'w' move up\n's' move down\n'a' move left\n'd' move right\n\n";
+            cout << "\nFloor: ";
+            cout << floor;
+            cout<< "\n\nControls:\n'r' Reset\n'w' move up\n's' move down\n'a' move left\n'd' move right\n\n";
 
             cin >> q;
 
@@ -105,6 +139,18 @@ int main() {
                                 }
                             } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
                                 p.setDmg(w->getDmg());
+                                pX = pX + 1;
+                                if (pX > 5) {
+                                    pX--;
+                                }
+                            } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
+                                /* spawnEvent<zombie>((rand() % 4) + 1, rooms);
+                                spawnEvent<skeleton>((rand() % 4) + 1, rooms);
+                                spawnEvent<shortsword>(1, rooms);
+                                spawnEvent<stairs>(1, rooms); */
+
+                                y = 1;
+
                                 pX = pX + 1;
                                 if (pX > 5) {
                                     pX--;
@@ -139,6 +185,13 @@ int main() {
                                 if (pX < 0) {
                                     pX++;
                                 }
+                            } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
+                                y = 1;
+
+                                pX--;
+                                if (pX < 0) {
+                                    pX++;
+                                }
                             }
                         } else if (nextEvent == nullptr) {
                             pX--;
@@ -169,6 +222,12 @@ int main() {
                                 if (pY < 0) {
                                     pY++;
                                 }
+                            } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
+                                y = 1;
+                                pY--;
+                                if (pY < 0) {
+                                    pY++;
+                                }
                             }
                         } else if (nextEvent == nullptr) {
                             pY--;
@@ -195,6 +254,12 @@ int main() {
                                 }
                             } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
                                 p.setDmg(w->getDmg());
+                                pY++;
+                                if (pY > 6) {
+                                    pY--;
+                                }
+                            } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
+                                y = 1;
                                 pY++;
                                 if (pY > 6) {
                                     pY--;
