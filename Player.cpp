@@ -4,6 +4,10 @@ void player :: decHealth(int h) {
     health = health - h;
 }
 
+void player :: incHealth(int h) {
+    health = health + h;
+}
+
 void player :: setDmg(int d) {
     dmg = d;
 }

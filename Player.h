@@ -18,6 +18,7 @@ class player : public event {
         player() = default;
         
         void decHealth(int h);
+        void incHealth(int h);
         void setDmg(int d);
         void setLocationX(int x);
         void setLocationY(int y);

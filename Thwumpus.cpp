@@ -8,6 +8,8 @@
 #include "Monster/Skeleton.h"
 #include "Weapon/Shortsword.h"
 #include "Stairs.h"
+#include "HealthCon/SmallHealth.h"
+#include "HealthCon/MedHealth.h"
 
 #include <ctime>
 #include <cstdlib>
@@ -30,6 +32,30 @@ void spawnEvent(int num, vector<vector<room>> &rooms) {
     } 
 }
 
+int twenty() {
+    int twenty = rand() % 5;
+    int check;
+    if (twenty == 0) {
+        check = 1;
+    } else {
+        check = 0;
+    }
+
+    return check;
+}
+
+int ten() {
+    int ten = rand() % 10;
+    int check;
+    if (ten == 1) {
+        check = 1;
+    } else {
+        check = 0;
+    }
+
+    return check;
+}
+
 int main() {
     char x;
     
@@ -45,7 +71,7 @@ int main() {
 
         spawnEvent<zombie>((rand() % 4) + 1, rooms);
         spawnEvent<skeleton>((rand() % 4) + 1, rooms);
-        spawnEvent<shortsword>(1, rooms);
+        spawnEvent<shortsword>(rand() % 2, rooms);
         spawnEvent<stairs>(1, rooms);
 
         cout<< "Welcome to gettin cooked";
@@ -57,6 +83,7 @@ int main() {
         }
 
         int y = 0;
+        int hM = 0;
         int floor = 1;
         //rooms[pX][pY].setEvent(&p);
 
@@ -74,9 +101,27 @@ int main() {
                 int pX = rand() % 6;
                 int pY = rand() % 7;
 
+                /* int twenty = rand() % 5;
+                int sSword;
+                if (twenty == 0) {
+                    sSword = 1;
+                } else {
+                    sSword = 0;
+                }
+
+                twenty = rand() % 5;
+                int sHealth;
+                if (twenty == 1) {
+                    sHealth = 1;
+                } else {
+                    sHealth = 0;
+                } */
+
                 spawnEvent<zombie>((rand() % 4) + 1, rooms);
                 spawnEvent<skeleton>((rand() % 4) + 1, rooms);
-                spawnEvent<shortsword>(1, rooms);
+                spawnEvent<shortsword>(twenty(), rooms);
+                spawnEvent<smallHealth>(twenty(), rooms);
+                spawnEvent<medHealth>(ten(), rooms);
                 spawnEvent<stairs>(1, rooms);
 
                 floor++;
@@ -116,6 +161,15 @@ int main() {
             cout << "\nFloor: ";
             cout << floor;
             cout<< "\n\nControls:\n'r' Reset\n'w' move up\n's' move down\n'a' move left\n'd' move right\n\n";
+            if (hM == 1) {
+                cout << "You drank a small potion\n";
+                cout << "Your health has increased!\n\n";
+                hM = 0;
+            } else if (hM == 2) {
+                cout << "You drank a medium potion\n";
+                cout << "Your health has increased!\n\n";
+                hM = 0;
+            }
 
             cin >> q;
 
@@ -144,16 +198,23 @@ int main() {
                                     pX--;
                                 }
                             } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
-                                /* spawnEvent<zombie>((rand() % 4) + 1, rooms);
-                                spawnEvent<skeleton>((rand() % 4) + 1, rooms);
-                                spawnEvent<shortsword>(1, rooms);
-                                spawnEvent<stairs>(1, rooms); */
-
                                 y = 1;
 
                                 pX = pX + 1;
                                 if (pX > 5) {
                                     pX--;
+                                }
+                            } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
+                                p.incHealth(h->getHeals());
+                                pX = pX + 1;
+                                if (pX > 5) {
+                                    pX--;
+                                }
+
+                                if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
+                                    hM = 1;
+                                } else if (medHealth* mHea = dynamic_cast<medHealth*>(h)) {
+                                    hM = 2;
                                 }
                             }
                         } else if (nextEvent == nullptr) {
@@ -192,6 +253,18 @@ int main() {
                                 if (pX < 0) {
                                     pX++;
                                 }
+                            } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
+                                p.incHealth(h->getHeals());
+                                pX--;
+                                if (pX < 0) {
+                                    pX++;
+                                }
+
+                                if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
+                                    hM = 1;
+                                } else if (medHealth* mHea = dynamic_cast<medHealth*>(h)) {
+                                    hM = 2;
+                                }
                             }
                         } else if (nextEvent == nullptr) {
                             pX--;
@@ -228,6 +301,18 @@ int main() {
                                 if (pY < 0) {
                                     pY++;
                                 }
+                            } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
+                                p.incHealth(h->getHeals());
+                                pY--;
+                                if (pY < 0) {
+                                    pY++;
+                                }
+
+                                if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
+                                    hM = 1;
+                                } else if (medHealth* mHea = dynamic_cast<medHealth*>(h)) {
+                                    hM = 2;
+                                }
                             }
                         } else if (nextEvent == nullptr) {
                             pY--;
@@ -263,6 +348,18 @@ int main() {
                                 pY++;
                                 if (pY > 6) {
                                     pY--;
+                                }
+                            } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
+                                p.incHealth(h->getHeals());
+                                pY++;
+                                if (pY > 6) {
+                                    pY--;
+                                }
+
+                                if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
+                                    hM = 1;
+                                } else if (medHealth* mHea = dynamic_cast<medHealth*>(h)) {
+                                    hM = 2;
                                 }
                             }
                         } else if (nextEvent == nullptr) {
