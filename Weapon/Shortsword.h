@@ -7,10 +7,12 @@ class shortsword : public weapon {
     private:
         char id = '^';
         int dmg = 7;
+        string name = "Shortsword";
     public:
         char getId();
         int getDmg();
         void setDmg(int d);
+        string getName();
 };
 
 #endif

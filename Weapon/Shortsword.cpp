@@ -4,6 +4,10 @@ char shortsword :: getId() {
     return this->id;
 }
 
+string shortsword :: getName() {
+    return this->name;
+}
+
 int shortsword :: getDmg() {
     return this->dmg;
 }

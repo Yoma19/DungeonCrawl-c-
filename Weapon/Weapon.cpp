@@ -4,6 +4,10 @@ char weapon :: getId() {
     return this->id;
 }
 
+string weapon :: getName() {
+    return this->name;
+}
+
 int weapon :: getDmg() {
     return this->dmg;
 }

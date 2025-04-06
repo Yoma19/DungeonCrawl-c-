@@ -9,14 +9,12 @@ void room :: setEvent(event* eve){
     this->e = eve;
 }
 
-void room :: setLocationX(int num){
-    this->location.x = num;
-}
-
-void room :: setLocationY(int num){
-    this->location.y = num;
-}
-
 void room :: resetEvent() {
     this->e = nullptr;
+}
+
+event* room :: transferEvent() {
+    event* t = this->e;
+    e = nullptr;
+    return t;
 }

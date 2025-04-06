@@ -3,6 +3,9 @@
 
 #include "Event.h"
 #include <iostream>
+#include <memory>
+
+using namespace std;
 
 class room {
     private:
@@ -12,10 +15,8 @@ class room {
         room() : e(nullptr) {}
         event* getEvent();
         void setEvent(event* eve);
-        void setLocationX(int num);
-        void setLocationY(int num);
         void resetEvent();
-        ~room() {delete e;}
+        event* transferEvent ();
 };
 
 #endif
