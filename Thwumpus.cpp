@@ -100,7 +100,7 @@ int main() {
         spawnEvent<zombie>((rand() % 4) + 1, rooms);
         spawnEvent<skeleton>((rand() % 4) + 1, rooms);
         spawnEvent<shortsword>(rand() % 2, rooms);
-        spawnEvent<stairs>(1, rooms);
+        spawnEvent<stairs>(2, rooms);
 
         cout<< "Welcome to gettin cooked";
         cout << "\nWhat do you want to do?\n";
@@ -179,20 +179,20 @@ int main() {
             cout << "\nFloor: ";
             cout << floor;
             cout<< "\n\nControls:\n'r' Reset\n'w' move up\n's' move down\n'a' move left\n'd' move right\n\n'i' Inventory\n\n";
-            if (hM == 1) {
+            /* if (hM == 1) {
                 cout << "You drank a small potion\nYour health has increased!\n\n";
                 hM = 0;
             } else if (hM == 2) {
                 cout << "You drank a medium potion\nYour health has increased!\n\n";
                 hM = 0;
-            }
+            } */
 
             cin >> q;
 
             rooms[pX][pY].resetEvent();
 
             if (q == "i") {
-                inv.viewItems();
+                inv.viewItems(p);
             }
 
             if (pX < 6 && pY < 7){
@@ -211,7 +211,6 @@ int main() {
                             } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX+1][pY].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.setDmg(w->getDmg());
                                 move(pX, pY, 0);
                                 
                             } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
@@ -220,7 +219,6 @@ int main() {
                             } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX+1][pY].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.incHealth(h->getHeals());
                                 move(pX, pY, 0);
                                 
                                 if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
@@ -249,7 +247,6 @@ int main() {
                             } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX-1][pY].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.setDmg(w->getDmg());
                                 move(pX, pY, 1);
                             } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
                                 y = 1;
@@ -257,7 +254,6 @@ int main() {
                             } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX-1][pY].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.incHealth(h->getHeals());
                                 move(pX, pY, 1);
 
                                 if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
@@ -286,7 +282,6 @@ int main() {
                             } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX][pY-1].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.setDmg(w->getDmg());
                                 move(pX, pY, 2);
                             } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
                                 y = 1;
@@ -294,7 +289,6 @@ int main() {
                             } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX][pY-1].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.incHealth(h->getHeals());
                                 move(pX, pY, 2);
 
                                 if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
@@ -323,7 +317,6 @@ int main() {
                             } else if (weapon* w = dynamic_cast<weapon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX][pY+1].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.setDmg(w->getDmg());
                                 move(pX, pY, 3);
                             } else if (nextEvent == dynamic_cast<stairs*>(nextEvent)) {
                                 y = 1;
@@ -331,7 +324,6 @@ int main() {
                             } else if (healthCon* h = dynamic_cast<healthCon*>(nextEvent)) {
                                 item* itemPtr = dynamic_cast<item*>(rooms[pX][pY+1].transferEvent());
                                 inv.addItems(itemPtr);
-                                p.incHealth(h->getHeals());
                                 move(pX, pY, 3);
 
                                 if (smallHealth* sHea = dynamic_cast<smallHealth*>(h)) {
